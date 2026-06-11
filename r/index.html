@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Alicerces 2027</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    .transition-all { transition: all 0.3s ease; }
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-50 font-sans text-slate-800">
+
+  <header class="bg-white border-b-4 border-[#50b0a7] sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 h-24 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-4 lg:gap-8 overflow-hidden">
+        <a href="https://tidycal.com/team/alicerces/atendimento-comercial" target="_blank" rel="noopener noreferrer"
+           class="hidden sm:flex items-center gap-2 bg-[#50b0a7]/10 text-[#50b0a7] px-4 py-2.5 rounded-xl font-black text-[11px] uppercase tracking-widest hover:bg-[#50b0a7] hover:text-white transition-all shrink-0 border border-[#50b0a7]/20">
+          <i data-lucide="video" class="w-3.5 h-3.5"></i> Agendar Reunião
+        </a>
+        <div class="flex items-center gap-4 cursor-pointer shrink-0" onclick="navigateTo('home')">
+          <img src="https://imagensplanoae.my.canva.site/_assets/media/84185005abc57baaff31bc88d8671294.png" alt="Logo" class="h-14 w-auto" />
+        </div>
+      </div>
+      
+      <nav class="hidden lg:flex gap-8 text-[13px] font-black uppercase tracking-[0.1em]">
+        <button id="nav-home" onclick="navigateTo('home')" class="text-[#50b0a7] border-b-2 border-[#50b0a7] pb-1">Home</button>
+        <button id="nav-materiais" onclick="navigateTo('materiais')" class="text-slate-400 hover:text-[#50b0a7] transition-colors">Materiais e Simulador</button>
+        <button id="nav-financeiro" onclick="navigateTo('financeiro')" class="text-slate-400 hover:text-[#50b0a7] transition-colors">Financeiro</button>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="https://aep.alicercesdoensino.com.br/escolhadosprodutosatuais" target="_blank" rel="noopener noreferrer"
+           class="hidden md:flex items-center gap-2 bg-[#f38932] text-white px-5 py-2.5 rounded-xl font-black text-[11px] uppercase tracking-widest hover:scale-105 transition-all shadow-lg shadow-orange-200 shrink-0">
+          Escolher meus kits 2027
+        </a>
+        <button class="lg:hidden p-2 text-[#50b0a7]" onclick="toggleMenu()">
+          <i id="menu-icon" data-lucide="menu" class="w-7 h-7"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 p-6 flex flex-col gap-4">
+      <button onclick="navigateTo('home')" class="text-left font-black uppercase text-[13px] p-2">Home</button>
+      <button onclick="navigateTo('materiais')" class="text-left font-black uppercase text-[13px] p-2">Materiais</button>
+      <button onclick="navigateTo('financeiro')" class="text-left font-black uppercase text-[13px] p-2">Financeiro</button>
+      <hr />
+      <a href="https://tidycal.com/team/alicerces/atendimento-comercial" target="_blank" class="bg-slate-100 p-4 rounded-xl font-black uppercase text-[11px] text-center">Agendar Reunião</a>
+      <a href="https://aep.alicercesdoensino.com.br/escolhadosprodutosatuais" target="_blank" class="bg-[#f38932] text-white p-4 rounded-xl font-black uppercase text-[11px] text-center">Escolher meus kits 2027</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="view-home" class="block">
+      <div class="bg-[#50b0a7] text-white py-20 px-4">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center text-center md:text-left">
+          <div class="space-y-6">
+            <h2 class="text-5xl md:text-6xl font-black leading-tight tracking-tighter uppercase">Prepare a sua escola para 2027.</h2>
+            <p class="text-lg opacity-90 font-medium">Simule agora os kits e veja os descontos exclusivos de renovação antecipada.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <button onclick="navigateTo('materiais')" class="bg-white text-[#50b0a7] px-10 py-5 rounded-2xl font-black text-lg shadow-xl hover:scale-105 transition-all flex items-center justify-center gap-3 uppercase">
+                Simular Materiais <i data-lucide="arrow-right"></i>
+              </button>
+            </div>
+          </div>
+          <div class="hidden md:block">
+            <img src="https://imagensplanoae.my.canva.site/_assets/media/bf035b970d21f2df96c272a8b500172d.png" alt="Capa" class="w-full rounded-[3rem] shadow-2xl rotate-2" />
+          </div>
+        </div>
+      </div>
+      
+      <div class="py-20 bg-white text-center px-4">
+        <div class="max-w-3xl mx-auto bg-slate-50 p-12 rounded-[3rem] border border-slate-100">
+          <h3 class="text-3xl font-black mb-6 uppercase tracking-tight">Pronto para o próximo passo?</h3>
+          <p class="text-slate-500 font-bold mb-8 italic">Garanta já a estrutura pedagógica completa para o seu ano letivo de 2027.</p>
+          <a href="https://aep.alicercesdoensino.com.br/escolhadosprodutosatuais" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-3 bg-[#f38932] text-white px-12 py-6 rounded-2xl font-black text-xl hover:scale-105 transition-all shadow-2xl uppercase">
+            ESCOLHER MEUS KITS PARA 2027 <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-materiais" class="hidden py-12 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-100 mb-12">
+          <h4 class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 flex items-center gap-2">
+            <i data-lucide="calendar" class="w-3.5 h-3.5"></i> Mês da Renovação (Define o Desconto):
+          </h4>
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-3" id="month-selector-main"></div>
+        </div>
+
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+          <div class="lg:col-span-8 space-y-12" id="collections-container"></div>
+
+          <div class="lg:col-span-4 sticky top-32">
+            <div class="bg-[#50b0a7] p-8 rounded-[3rem] text-white shadow-2xl border-b-[12px] border-[#3d8a83]">
+              <div class="flex justify-between items-center mb-6">
+                <h4 class="font-black uppercase flex items-center gap-2 tracking-widest text-sm"><i data-lucide="calculator" class="w-5 h-5"></i> Resumo Proposta</h4>
+                <button onclick="clearCart()" class="bg-white/20 hover:bg-white/40 p-2 rounded-xl transition-colors">
+                  <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+
+              <div class="grid grid-cols-5 gap-1 mb-6 bg-white/10 p-1.5 rounded-xl border border-white/10" id="month-selector-sticky"></div>
+
+              <div class="space-y-6">
+                <div class="flex justify-between border-b border-white/20 pb-4">
+                  <span class="font-bold text-sm opacity-80">Desconto ativo (<span id="summary-date">30 de Junho</span>):</span> 
+                  <span id="summary-discount-badge" class="bg-white text-[#50b0a7] px-3 py-1 rounded-full text-xs font-black">30% OFF</span>
+                </div>
+                <div class="text-center py-4">
+                  <p class="text-[10px] font-black uppercase tracking-[0.4em] mb-2 opacity-60">Total Estimado</p>
+                  <p class="text-4xl font-black tracking-tighter" id="summary-total">R$ 0,00</p>
+                </div>
+                
+                <div id="savings-box" class="hidden bg-white/10 p-4 rounded-2xl border border-white/20 text-center">
+                  <span class="text-[10px] font-black uppercase text-white/70">Sua Economia:</span>
+                  <div class="flex items-center justify-center gap-2 mt-1">
+                    <i data-lucide="wallet" class="w-4.5 h-4.5 text-[#f38932]"></i>
+                    <span class="text-xl font-black" id="summary-savings">R$ 0,00</span>
+                  </div>
+                </div>
+                
+                <a href="https://aep.alicercesdoensino.com.br/escolhadosprodutosatuais" target="_blank" rel="noopener noreferrer"
+                   class="w-full bg-[#f38932] py-5 rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-xl hover:scale-105 transition-all flex items-center justify-center gap-3">
+                  ESCOLHER MEUS KITS PARA 2027 <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+
+                <button onclick="clearCart()" class="w-full py-3 border-2 border-white/20 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-white/10 transition-all flex items-center justify-center gap-2">
+                  <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Reiniciar Simulação
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-financeiro" class="hidden py-20 px-4">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-[#f38932] font-black text-xs uppercase tracking-[0.4em] mb-4 block">Planejamento 2027</span>
+          <h3 class="text-4xl md:text-5xl font-black text-slate-800 uppercase tracking-tighter">Formas de Contratação</h3>
+          <div class="h-1.5 w-24 bg-[#50b0a7] mx-auto rounded-full mt-6"></div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 mb-20">
+          <div class="bg-emerald-50/60 p-10 rounded-[3rem] shadow-sm border-2 border-[#50b0a7]/30 flex flex-col">
+            <div class="flex items-center gap-4 mb-8">
+              <div class="bg-[#50b0a7]/10 p-4 rounded-2xl">
+                <i data-lucide="building-2" class="w-10 h-10 text-[#50b0a7]"></i>
+              </div>
+              <div>
+                <h4 class="text-2xl font-black uppercase tracking-tight text-slate-800">Compra Direta da Escola</h4>
+                <p class="text-xs font-bold text-[#50b0a7] uppercase tracking-widest">Gestão Institucional</p>
+              </div>
+            </div>
+            <p class="text-slate-600 font-medium text-sm leading-relaxed mb-8">
+              A escola realiza a compra diretamente pela loja da Editora, com pagamento via boleto bancário. Os materiais podem ser enviados de forma bimestral ou semestral diretamente para a instituição.
+            </p>
+            <div class="space-y-4 mt-auto">
+              <div class="flex items-center gap-3 text-[11px] font-black uppercase text-[#50b0a7]"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Gestão centralizada pela escola</div>
+              <div class="flex items-center gap-3 text-[11px] font-black uppercase text-[#50b0a7]"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Possibilidade de planejamento por bimestre ou semestre</div>
+              <div class="flex items-center gap-3 text-[11px] font-black uppercase text-[#50b0a7]"><i data-lucide="credit-card" class="w-4 h-4"></i> Parcelamento via boleto bancário</div>
+            </div>
+          </div>
+
+          <div class="bg-orange-50/60 p-10 rounded-[3rem] shadow-sm border-2 border-[#f38932]/30 flex flex-col relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-[#f38932] text-white px-6 py-2 rounded-bl-2xl text-[10px] font-black uppercase tracking-widest">Recomendado</div>
+            <div class="flex items-center gap-4 mb-8">
+              <div class="bg-orange-50 p-4 rounded-2xl border border-orange-200">
+                <i data-lucide="users-2" class="w-10 h-10 text-[#f38932]"></i>
+              </div>
+              <div>
+                <h4 class="text-2xl font-black uppercase tracking-tight text-slate-800">Compra Direta dos Pais</h4>
+                <p class="text-xs font-bold text-[#f38932] uppercase tracking-widest italic">Mais praticidade para a escola</p>
+              </div>
+            </div>
+            <p class="text-slate-600 font-medium text-sm leading-relaxed mb-8">
+              Os pais realizam a compra diretamente no site da Editora utilizando uma chave de acesso exclusiva da instituição.
+            </p>
+            <div class="space-y-4 mt-auto">
+              <div class="flex items-center gap-3 text-[11px] font-black uppercase text-[#f38932]"><i data-lucide="shield-check" class="w-4 h-4"></i> Redução significativa da inadimplência</div>
+              <div class="flex items-center gap-3 text-[11px] font-black uppercase text-[#f38932]"><i data-lucide="credit-card" class="w-4 h-4"></i> Parcelamento em até 12x sem juros para as famílias</div>
+              <div class="flex items-center gap-3 text-[11px] font-black uppercase text-[#f38932]"><i data-lucide="package" class="w-4 h-4"></i> Materiais enviados semestralmente para a escola</div>
+              <div class="flex items-center gap-3 text-[11px] font-black uppercase text-[#f38932]"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Possibilidade de comissionamento comercial [Agende com o consultor]</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-32">
+          <div class="flex items-center gap-3 mb-10 pb-4 border-b-2 border-slate-100">
+            <div class="bg-[#50b0a7] text-white p-2 rounded-lg"><i data-lucide="building-2" class="w-6 h-6"></i></div>
+            <h4 class="text-2xl font-black uppercase tracking-tight text-slate-800">Detalhamento — Compra Direta da Escola</h4>
+          </div>
+          
+          <div class="grid lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-5 space-y-6 flex flex-col h-full">
+              <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                 <h5 class="flex items-center gap-2 text-md font-black text-slate-800 uppercase mb-4"><i data-lucide="info" class="w-5 h-5 text-[#f38932]"></i> Informações Complementares</h5>
+                 <ul class="space-y-3">
+                    <li class="flex gap-3 text-xs font-bold text-slate-600">
+                      <i data-lucide="check-circle-2" class="w-4 h-4 text-[#50b0a7] shrink-0"></i> O custo do frete corresponde a 5% do valor total do pedido.
+                    </li>
+                    <li class="flex gap-3 text-xs font-bold text-slate-600">
+                      <i data-lucide="check-circle-2" class="w-4 h-4 text-[#50b0a7] shrink-0"></i> Pedidos complementares podem ser realizados ao longo do ano.
+                    </li>
+                    <li class="flex gap-3 text-xs font-bold text-slate-600">
+                      <i data-lucide="check-circle-2" class="w-4 h-4 text-[#50b0a7] shrink-0"></i> Pedidos complementares sub R$ 5.000,00 parcelam em até 3x no boleto.
+                    </li>
+                 </ul>
+              </div>
+
+              <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm mt-auto">
+                <h5 class="flex items-center gap-2 text-md font-black text-slate-800 uppercase mb-4"><i data-lucide="truck" class="w-5 h-5 text-[#50b0a7]"></i> Prazo Médio de Entrega</h5>
+                <div class="space-y-2 text-xs font-bold text-slate-600">
+                  <div class="flex justify-between border-b pb-1"><span>Sul e Sudeste:</span><span class="text-[#50b0a7]">3 a 7 dias úteis</span></div>
+                  <div class="flex justify-between border-b pb-1"><span>Centro-Oeste:</span><span class="text-[#50b0a7]">7 a 10 dias úteis</span></div>
+                  <div class="flex justify-between pb-1"><span>Norte e Nordeste:</span><span class="text-[#50b0a7]">7 a 15 dias úteis</span></div>
+                </div>
+                <p class="text-[9px] font-bold text-[#f38932] uppercase italic mt-3">* Prazos contados após o despacho (embarque).</p>
+              </div>
+            </div>
+
+            <div class="lg:col-span-7 bg-slate-900 p-8 rounded-[3rem] text-white shadow-xl">
+              <h5 class="text-lg font-black text-[#50b0a7] uppercase mb-4 flex items-center gap-2"><i data-lucide="clock" class="w-5 h-5"></i> Cronograma Geral de Pedidos e Parcelamentos</h5>
+              
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                  <thead>
+                    <tr class="border-b border-slate-700 text-[#f38932] uppercase font-black tracking-wider">
+                      <th class="py-3 px-2">Modalidade / Período</th>
+                      <th class="py-3 px-2">Janela de Compra</th>
+                      <th class="py-3 px-2">Embarque</th>
+                      <th class="py-3 px-2 text-right">Parcelamento Máx.</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-800 text-slate-200 font-medium">
+                    <tr><td class="py-3 px-2 font-black text-slate-400" colspan="4">OPÇÃO 1 — COMPRA BIMESTRAL</td></tr>
+                    <tr>
+                      <td class="py-2 px-2 pl-4 text-slate-300">1º Bimestre </td>
+                      <td class="py-2 px-2">Até 30 de Outubro</td>
+                      <td class="py-2 px-2 text-[#50b0a7]">05 de Janeiro</td>
+                      <td class="py-2 px-2 text-right"><span class="bg-slate-800 px-2.5 py-0.5 rounded text-white font-bold">4x</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 px-2 pl-4 text-slate-300">1º Bimestre </td>
+                      <td class="py-2 px-2">Até 30 de Novembro</td>
+                      <td class="py-2 px-2 text-[#50b0a7]">05 de Janeiro</td>
+                      <td class="py-2 px-2 text-right"><span class="bg-slate-800 px-2.5 py-0.5 rounded text-white font-bold">3x</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 px-2 pl-4 text-slate-300">2º Bimestre</td>
+                      <td class="py-2 px-2">Até 15 de Fevereiro</td>
+                      <td class="py-2 px-2 text-[#50b0a7]">20 de Março</td>
+                      <td class="py-2 px-2 text-right"><span class="bg-slate-800 px-2.5 py-0.5 rounded text-white font-bold">3x</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 px-2 pl-4 text-slate-300">3º Bimestre</td>
+                      <td class="py-2 px-2">Até 15 de Abril</td>
+                      <td class="py-2 px-2 text-[#50b0a7]">05 de Junho</td>
+                      <td class="py-2 px-2 text-right"><span class="bg-slate-800 px-2.5 py-0.5 rounded text-white font-bold">3x</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 px-2 pl-4 text-slate-300">4º Bimestre</td>
+                      <td class="py-2 px-2">Até 15 de Julho</td>
+                      <td class="py-2 px-2 text-[#50b0a7]">20 de Agosto</td>
+                      <td class="py-2 px-2 text-right"><span class="bg-slate-800 px-2.5 py-0.5 rounded text-white font-bold">3x</span></td>
+                    </tr>
+                    
+                    <tr><td class="py-3 px-2 pt-6 font-black text-slate-400" colspan="4">OPÇÃO 2 — COMPRA SEMESTRAL</td></tr>
+                    <tr>
+                      <td class="py-2 px-2 pl-4 text-slate-300">1º Semestre</td>
+                      <td class="py-2 px-2">Até 30 de Setembro</td>
+                      <td class="py-2 px-2 text-[#50b0a7]">05 de Janeiro</td>
+                      <td class="py-2 px-2 text-right"><span class="bg-[#50b0a7]/20 text-[#50b0a7] px-2.5 py-0.5 rounded font-bold">6x</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 px-2 pl-4 text-slate-300">1º Semestre</td>
+                      <td class="py-2 px-2">Até 30 de Outubro</td>
+                      <td class="py-2 px-2 text-[#50b0a7]">05 de Janeiro</td>
+                      <td class="py-2 px-2 text-right"><span class="bg-slate-800 px-2.5 py-0.5 rounded text-white font-bold">5x</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 px-2 pl-4 text-slate-300">1º Semestre</td>
+                      <td class="py-2 px-2">Até 30 de Novembro</td>
+                      <td class="py-2 px-2 text-[#50b0a7]">05 de Janeiro</td>
+                      <td class="py-2 px-2 text-right"><span class="bg-slate-800 px-2.5 py-0.5 rounded text-white font-bold">4x</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 px-2 pl-4 text-slate-300">2º Semestre</td>
+                      <td class="py-2 px-2">Até 15 de Abril</td>
+                      <td class="py-2 px-2 text-[#50b0a7]">05 de Junho</td>
+                      <td class="py-2 px-2 text-right"><span class="bg-[#50b0a7]/20 text-[#50b0a7] px-2.5 py-0.5 rounded font-bold">6x</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-24">
+          <div class="flex items-center gap-3 mb-10 pb-4 border-b-2 border-slate-100">
+            <div class="bg-[#f38932] text-white p-2 rounded-lg"><i data-lucide="users-2" class="w-6 h-6"></i></div>
+            <h4 class="text-2xl font-black uppercase tracking-tight text-slate-800">Detalhamento — Compra Direta dos Pais</h4>
+          </div>
+          
+          <div class="grid lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-5 space-y-6 flex flex-col h-full">
+              <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                <h5 class="font-black text-md uppercase text-[#f38932] mb-4 flex items-center gap-2"><i data-lucide="key" class="w-4 h-4"></i> Condições da Modalidade</h5>
+                <ul class="space-y-3">
+                  <li class="flex items-center gap-3 text-xs font-bold text-slate-600"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-500 shrink-0"></i> Parcelamento em até 12x sem juros no cartão ou pagamento via PIX.</li>
+                  <li class="flex items-center gap-3 text-xs font-bold text-slate-600"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-500 shrink-0"></i> Logística centralizada e simplificada.</li>
+                  <li class="flex items-center gap-3 text-xs font-bold text-slate-600"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-500 shrink-0"></i> Frete padrão fixado em 5% sobre os pedidos.</li>
+                  <li class="flex items-center gap-3 text-xs font-bold text-slate-600"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-500 shrink-0"></i> Eliminação completa do risco de inadimplência escolar.</li>
+                </ul>
+              </div>
+
+              <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm mt-auto">
+                <h5 class="flex items-center gap-2 text-md font-black text-slate-800 uppercase mb-4"><i data-lucide="truck" class="w-5 h-5 text-[#f38932]"></i> Prazo Médio de Entrega</h5>
+                <div class="space-y-2 text-xs font-bold text-slate-600">
+                  <div class="flex justify-between border-b pb-1"><span>Sul e Sudeste:</span><span class="text-[#f38932]">3 a 7 dias úteis</span></div>
+                  <div class="flex justify-between border-b pb-1"><span>Centro-Oeste:</span><span class="text-[#f38932]">7 a 10 dias úteis</span></div>
+                  <div class="flex justify-between pb-1"><span>Norte e Nordeste:</span><span class="text-[#f38932]">7 a 15 dias úteis</span></div>
+                </div>
+                <p class="text-[9px] font-bold text-slate-400 italic mt-3">* Prazos após encerramento do lote ou liberação do período.</p>
+              </div>
+            </div>
+
+            <div class="lg:col-span-7 bg-slate-950 p-8 rounded-[3rem] text-white shadow-2xl border border-slate-800">
+              <h5 class="text-lg font-black text-[#f38932] uppercase mb-4 flex items-center gap-2"><i data-lucide="calendar" class="w-5 h-5"></i> Planejamento e Detalhamento de Entregas</h5>
+              
+              <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs">
+                  <thead>
+                    <tr class="border-b border-slate-800 text-[#50b0a7] uppercase font-black tracking-wider">
+                      <th class="py-3 px-2">Fluxo de Distribuição</th>
+                      <th class="py-3 px-2">Dinâmica de Operação / Data de Corte</th>
+                      <th class="py-3 px-2 text-right">Previsão de Despacho</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-800 text-slate-300 font-medium">
+                    <tr><td class="py-3 px-2 font-black text-slate-500" colspan="3">MODALIDADE ÚNICA</td></tr>
+                    <tr>
+                      <td class="py-3 px-2 pl-4 text-slate-200 font-bold">1º Semestre</td>
+                      <td class="py-3 px-2 text-slate-400">A escola estipula uma data limite de compras para as famílias no portal.</td>
+                      <td class="py-3 px-2 text-right text-[#f38932] font-black">Até 7 dias úteis após a data de corte</td>
+                    </tr>
+                    <tr>
+                      <td class="py-3 px-2 pl-4 text-slate-200 font-bold">2º Semestre</td>
+                      <td class="py-3 px-2 text-slate-400">Envio em lote unificado programado para a segunda metade do ano letivo.</td>
+                      <td class="py-3 px-2 text-right text-[#f38932] font-black">Despacho geral até 05 de Junho</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-16 text-center">
+          <a href="https://aep.alicercesdoensino.com.br/escolhadosprodutosatuais" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-3 bg-[#f38932] text-white px-12 py-6 rounded-2xl font-black text-xl hover:scale-105 transition-all shadow-2xl uppercase">
+            ESCOLHER MEUS KITS PARA 2027 <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-12 text-center border-t border-slate-200 bg-white">
+     <div class="max-w-7xl mx-auto px-4 flex flex-col items-center gap-4">
+        <div class="flex flex-col items-center">
+          <img src="https://imagensplanoae.my.canva.site/_assets/media/84185005abc57baaff31bc88d8671294.png" alt="Logo Principal" class="h-14 w-auto" />
+        </div>
+        <div class="flex flex-wrap justify-center gap-4 mt-6">
+          <a href="https://tidycal.com/team/alicerces/atendimento-comercial" target="_blank" class="text-[11px] font-black uppercase text-slate-400 hover:text-[#50b0a7] transition-colors">Agendar Reunião</a>
+          <span class="text-slate-200">•</span>
+          <a href="https://aep.alicercesdoensino.com.br/escolhadosprodutosatuais" target="_blank" class="text-[11px] font-black uppercase text-slate-400 hover:text-[#f38932] transition-colors">Escolher Kits 2027</a>
+        </div>
+        
+        <div class="mt-8 flex flex-col items-center gap-3">
+          <p class="text-slate-400 font-black text-[10px] uppercase tracking-widest italic text-center leading-relaxed">
+            © 2027 Editora Cristã Evangélica | CNPJ: 00.486.811/0003-06 <br />
+            Todos os Direitos Reservados
+          </p>
+          
+          <a href="https://wa.me/5512988670867" target="_blank" rel="noopener noreferrer" 
+             class="flex items-center gap-2 text-slate-400 hover:text-[#25D366] transition-all hover:scale-105 mt-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+            </svg>
+            <span class="font-black text-[12px] tracking-widest">+55 (12) 98867-0867</span>
+          </a>
+        </div>
+     </div>
+  </footer>
+
+  <script>
+    const baseCollections = [
+      {
+        id: 1,
+        segment: 'Educação Infantil',
+        title: 'Maternal (1 a 3 Anos)',
+        price: 815.52,
+        imageUrl: 'https://imagensplanoae.my.canva.site/_assets/media/0d280fe193f792a9c6710a51f3dbc491.png', 
+        composition: ['4 Blocos de Atividades (Formato A3)', '4 Pastas (Formato A3)', '1 Maleta'],
+        catalogUrl: 'https://imagensplanoae.my.canva.site/materiaisalicerces2027',
+        optionals: [
+          { id: 'ap3', title: 'Aprender a Palavra 3 anos', price: 88.25, max: 1 },
+          { id: 'fa_mat', title: 'Coleção Fazendo Arte', price: 49.03, max: 2 },
+          { id: 'am_mat', title: 'Coleção Aprendendo Música', price: 49.03, max: 2 }
+        ]
+      },
+      {
+        id: 2,
+        segment: 'Educação Infantil',
+        title: 'Pré-Escola (4 a 5 Anos)',
+        price: 815.52,
+        imageUrl: 'https://imagensplanoae.my.canva.site/_assets/media/9787f80c7047562ee6e1b9433524568e.png', 
+        composition: ['4 Blocos Integrados (A4)', 'Opção Fichário ou Encadernado', '4 Pastas (A4)', '1 Maleta'],
+        catalogUrl: 'https://imagensplanoae.my.canva.site/materiaisalicerces2027',
+        optionals: [
+          { id: 'ap4', title: 'Aprender a Palavra 4 anos', price: 65.37, max: 1 },
+          { id: 'ap5', title: 'Aprender a Palavra 5 anos', price: 65.37, max: 1 },
+          { id: 'fa_pre', title: 'Coleção Fazendo Arte', price: 49.03, max: 2 },
+          { id: 'am_pre', title: 'Coleção Aprendendo Música', price: 49.03, max: 2 }
+        ]
+      },
+      {
+        id: 3,
+        segment: 'Fundamental I',
+        title: 'Anos Iniciais (1º ao 5º)',
+        price: 1554.21,
+        imageUrl: 'https://imagensplanoae.my.canva.site/_assets/media/f6116b4dc45cb833641077051b9757a0.png', 
+        composition: ['Opção Fichário ou Encadernado', '5 Livros de Disciplinas Base', '2 Paradidáticos', 'Material Feras do Saber'],
+        catalogUrl: 'https://imagensplanoae.my.canva.site/materiaisalicerces2027/anos-iniciais',
+        optionals: [
+          { id: 'pp15', title: 'Princípios em Pauta 1º a 5º ano', price: 104.59, max: 1 },
+          { id: 'ap13', title: 'Aprender a Palavra 1º a 3º ano', price: 65.37, max: 1 },
+          { id: 'ap45', title: 'Aprender a Palavra 4º a 5º ano', price: 89.89, max: 1 }
+        ]
+      },
+      {
+        id: 4,
+        segment: 'Fundamental II',
+        title: 'Anos Finais (6º ao 9º)',
+        price: 1866.57,
+        imageUrl: 'https://imagensplanoae.my.canva.site/_assets/media/93b3327bff86b48debbdab4494c9e440.png', 
+        composition: ['Opção Fichário ou Encadernado', '5 Livros de Disciplinas Base', 'Material Feras do Saber'],
+        catalogUrl: 'https://imagensplanoae.my.canva.site/materiaisalicerces2027/anos-finais',
+        optionals: [
+          { id: 'ap69', title: 'Aprender a Palavra 6º a 9º ano', price: 89.89, max: 1 }
+        ]
+      }
+    ];
+
+    const renewalDeadlines = {
+      jun: { date: '30 de Junho', discount: 30 },
+      jul: { date: '31 de Julho', discount: 25 },
+      ago: { date: '31 de Agosto', discount: 20 },
+      set: { date: '30 de Setembro', discount: 15 },
+      out: { date: '30 de Outubro', discount: 0 }
+    };
+
+    let currentView = 'home';
+    let selectedMonth = 'jun';
+    let cart = [];
+    let isMenuOpen = false;
+
+    function navigateTo(view) {
+      currentView = view;
+      ['home', 'materiais', 'financeiro'].forEach(v => {
+        document.getElementById(`view-${v}`).style.display = v === view ? 'block' : 'none';
+        const navBtn = document.getElementById(`nav-${v}`);
+        if (v === view) {
+          navBtn.className = "text-[#50b0a7] border-b-2 border-[#50b0a7] pb-1";
+        } else {
+          navBtn.className = "text-slate-400 hover:text-[#50b0a7] transition-colors";
+        }
+      });
+      isMenuOpen = false;
+      document.getElementById('mobile-menu').classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleMenu() {
+      isMenuOpen = !isMenuOpen;
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('menu-icon');
+      if (isMenuOpen) {
+        menu.classList.remove('hidden');
+        icon.setAttribute('data-lucide', 'x');
+      } else {
+        menu.classList.add('hidden');
+        icon.setAttribute('data-lucide', 'menu');
+      }
+      lucide.createIcons();
+    }
+
+    function changeMonth(monthKey) {
+      selectedMonth = monthKey;
+      renderSelectors();
+      calculateTotals();
+    }
+
+    function renderSelectors() {
+      const mainContainer = document.getElementById('month-selector-main');
+      const stickyContainer = document.getElementById('month-selector-sticky');
+      
+      mainContainer.innerHTML = '';
+      stickyContainer.innerHTML = '';
+
+      Object.entries(renewalDeadlines).forEach(([key, data]) => {
+        const isSelected = selectedMonth === key;
+        const mainBtn = document.createElement('button');
+        mainBtn.onclick = () => changeMonth(key);
+        mainBtn.className = `p-4 rounded-2xl border-2 transition-all flex flex-col items-center ${isSelected ? 'border-[#50b0a7] bg-[#50b0a7]/5 text-[#50b0a7]' : 'border-slate-50 text-slate-400 hover:border-slate-200'}`;
+        mainBtn.innerHTML = `<span class="text-xs font-black uppercase">${key}</span><span class="text-lg font-black">${data.discount}% OFF</span>`;
+        mainContainer.appendChild(mainBtn);
+
+        const stickyBtn = document.createElement('button');
+        stickyBtn.onclick = () => changeMonth(key);
+        stickyBtn.className = `py-2 rounded-lg text-[10px] font-black uppercase tracking-tighter transition-all flex flex-col items-center justify-center ${isSelected ? 'bg-white text-[#50b0a7] shadow-sm' : 'text-white/70 hover:bg-white/5'}`;
+        stickyBtn.innerHTML = `<span>${key}</span><span class="font-black">${data.discount}%</span>`;
+        stickyContainer.appendChild(stickyBtn);
+      });
+    }
+
+    function toggleBaseKit(id) {
+      const item = baseCollections.find(c => c.id === id);
+      const index = cart.findIndex(c => c.id === id && c.type === 'base');
+      if (index > -1) {
+        cart.splice(index, 1);
+      } else {
+        cart.push({ id: item.id, title: item.title, price: item.price, quantity: 1, type: 'base' });
+      }
+      renderCollections();
+      calculateTotals();
+    }
+
+    function updateOptionalQty(id, delta, max) {
+      const item = baseCollections.flatMap(c => c.optionals).find(o => o.id === id);
+      const existing = cart.find(c => c.id === id);
+      
+      if (existing) {
+        const newQty = existing.quantity + delta;
+        if (newQty <= 0) {
+          cart = cart.filter(c => c.id !== id);
+        } else if (newQty <= max) {
+          existing.quantity = newQty;
+        }
+      } else if (delta > 0) {
+        cart.push({ id: item.id, title: item.title, price: item.price, quantity: 1, type: 'optional', max: max });
+      }
+      renderCollections();
+      calculateTotals();
+    }
+
+    function clearCart() {
+      cart = [];
+      renderCollections();
+      calculateTotals();
+    }
+
+    function calculateTotals() {
+      const discountPercent = renewalDeadlines[selectedMonth].discount;
+      let originalTotal = 0;
+      let discountedTotal = 0;
+
+      cart.forEach(item => {
+        const itemOriginal = item.price * item.quantity;
+        const itemDiscounted = itemOriginal * (1 - discountPercent / 100);
+        originalTotal += itemOriginal;
+        discountedTotal += itemDiscounted;
+      });
+
+      const savings = originalTotal - discountedTotal;
+
+      document.getElementById('summary-date').innerText = renewalDeadlines[selectedMonth].date;
+      document.getElementById('summary-discount-badge').innerText = `${discountPercent}% OFF`;
+      document.getElementById('summary-total').innerText = `R$ ${discountedTotal.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
+      
+      const savingsBox = document.getElementById('savings-box');
+      if (savings > 0) {
+        savingsBox.classList.remove('hidden');
+        document.getElementById('summary-savings').innerText = `R$ ${savings.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
+      } else {
+        savingsBox.classList.add('hidden');
+      }
+    }
+
+    function renderCollections() {
+      const container = document.getElementById('collections-container');
+      container.innerHTML = '';
+
+      baseCollections.forEach(item => {
+        const isBaseAdded = cart.some(c => c.id === item.id && c.type === 'base');
+        const card = document.createElement('div');
+        card.className = "bg-white p-8 rounded-[3rem] border border-slate-100 shadow-sm";
+        
+        let compositionList = item.composition.map(c => `
+          <li class="flex items-center gap-2 font-bold text-slate-600 text-xs">
+            <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-[#50b0a7]"></i> ${c}
+          </li>
+        `).join('');
+
+        let optionalsList = item.optionals.map(opt => {
+          const cartItem = cart.find(c => c.id === opt.id);
+          const currentQty = cartItem ? cartItem.quantity : 0;
+          return `
+            <div class="bg-slate-50/50 p-4 rounded-2xl border border-slate-100 hover:border-[#50b0a7] transition-all">
+              <h6 class="font-black text-slate-700 text-xs leading-tight mb-1">${opt.title}</h6>
+              <p class="text-[10px] font-black text-[#50b0a7] mb-3">R$ ${opt.price.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</p>
+              <div class="flex items-center justify-between bg-white p-1.5 rounded-xl border border-slate-100">
+                <button onclick="updateOptionalQty('${opt.id}', -1, ${opt.max})" class="w-8 h-8 rounded-lg bg-slate-50 text-slate-400 flex items-center justify-center hover:text-red-400"><i data-lucide="minus" class="w-3.5 h-3.5"></i></button>
+                <span class="font-black text-sm">${currentQty}</span>
+                <button onclick="updateOptionalQty('${opt.id}', 1, ${opt.max})" class="w-8 h-8 rounded-lg flex items-center justify-center ${currentQty >= opt.max ? 'bg-slate-50 text-slate-200 cursor-not-allowed' : 'bg-[#50b0a7]/10 text-[#50b0a7] hover:bg-[#50b0a7] hover:text-white'}"><i data-lucide="plus" class="w-3.5 h-3.5"></i></button>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        card.innerHTML = `
+          <div class="grid md:grid-cols-12 gap-8">
+            <div class="md:col-span-4">
+              <img src="${item.imageUrl}" alt="${item.title}" class="w-full rounded-2xl shadow-lg" />
+            </div>
+            <div class="md:col-span-8 space-y-4">
+              <span class="text-xs font-black text-[#f38932] uppercase tracking-widest">${item.segment}</span>
+              <h4 class="text-3xl font-black text-slate-800 tracking-tighter">${item.title}</h4>
+              <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                <h5 class="font-black text-[#50b0a7] mb-3 uppercase text-[10px] tracking-widest flex items-center gap-2"><i data-lucide="book-open" class="w-4 h-4"></i> Kit Base:</h5>
+                <ul class="space-y-1.5">${compositionList}</ul>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                <button onclick="toggleBaseKit(${item.id})" class="px-6 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest transition-all ${isBaseAdded ? 'bg-[#f38932] text-white' : 'bg-[#50b0a7] text-white hover:scale-105'}">
+                  ${isBaseAdded ? 'Kit Adicionado ✓' : 'Adicionar Kit Base'}
+                </button>
+                <a href="${item.catalogUrl}" target="_blank" class="bg-slate-100 px-6 py-3 rounded-xl font-black text-[10px] uppercase text-slate-400 hover:bg-slate-200 text-center">Ver Catálogo</a>
+              </div>
+            </div>
+          </div>
+          <div class="mt-8 pt-8 border-t border-dashed border-slate-200">
+            <h5 class="font-black text-[#f38932] mb-4 uppercase text-[10px] tracking-widest flex items-center gap-2"><i data-lucide="star" class="w-3.5 h-3.5 fill-[#f38932]"></i> Materiais Opcionais:</h5>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">${optionalsList}</div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    window.onload = () => {
+      renderSelectors();
+      renderCollections();
+      calculateTotals();
+    };
+  </script>
+</body>
+</html>
